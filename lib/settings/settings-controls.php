@@ -1,7 +1,7 @@
 <?php
 
 add_action('woocommerce_settings_tabs_shipping', function ($settings) {
-    if ($_GET['section'] !== 'toshi') {
+    if (($_GET['section'] ?? '') !== 'toshi') {
         return;
     }
 

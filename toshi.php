@@ -3,17 +3,24 @@
  * Plugin Name: TOSHI
  * Plugin URI: https://www.toshi.co
  * Description: Adds TOSHI shipping option to WooCommerce.
- * Version: 1.0.0
+ * Version: 2.6.14
  * Author: TOSHI
  * Author URI: https://www.toshi.co
  */
 
 require(plugin_dir_path(__FILE__) . './lib/shipping-method.function.php');
+require(plugin_dir_path(__FILE__) . './lib/toshi-shipping-option-selected.function.php');
+require(plugin_dir_path(__FILE__) . './lib/settings.php');
 require(plugin_dir_path(__FILE__) . './lib/script-management.php');
 require(plugin_dir_path(__FILE__) . './lib/modal-template.php');
 require(plugin_dir_path(__FILE__) . './lib/checkout-data.php');
 require(plugin_dir_path(__FILE__) . './lib/select-slot.php');
 require(plugin_dir_path(__FILE__) . './lib/settings/settings-controls.php');
+require(plugin_dir_path(__FILE__) . './lib/cart-data.php');
+require(plugin_dir_path(__FILE__) . './lib/modal-data.php');
+require(plugin_dir_path(__FILE__) . './lib/order-confirmation.php');
+require(plugin_dir_path(__FILE__) . './lib/quote-reference.php');
+
 
 if (!defined('WPINC')) {
     die;

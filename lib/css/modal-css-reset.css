@@ -1,0 +1,33 @@
+#js-toshi-app * {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+#js-toshi-app article, #js-toshi-app aside, #js-toshi-app details, #js-toshi-app summary, #js-toshi-app figcaption, #js-toshi-app figure,
+#js-toshi-app footer, #js-toshi-app header, #js-toshi-app hgroup, #js-toshi-app menu, #js-toshi-app nav, #js-toshi-app section {
+  display: block;
+}
+
+
+#js-toshi-app ol, #js-toshi-app ul {
+  list-style: none;
+}
+
+#js-toshi-app blockquote, #js-toshi-app q {
+  quotes: none;
+}
+
+#js-toshi-app blockquote:before, #js-toshi-app blockquote:after,
+#js-toshi-app q:before, #js-toshi-app q:after {
+  content: '';
+  content: none;
+}
+
+#js-toshi-app table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}

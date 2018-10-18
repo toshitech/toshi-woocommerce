@@ -4,7 +4,7 @@ function setup_toshi_shipping_method()
 {
     function toshi_shipping_method()
     {
-        if (!class_exists('Toshi_Shipping_Method')) {
+        if (! class_exists('Toshi_Shipping_Method')) {
             class Toshi_Shipping_Method extends WC_Shipping_Method
             {
                 /**
@@ -30,11 +30,6 @@ function setup_toshi_shipping_method()
                     $this->init();
                 }
 
-//                public function supports($feature)
-                //                {
-                //                    return in_array($feature, array('settings', 'shipping-zones'));
-                //                }
-
                 /**
                  * Init your settings
                  *
@@ -57,32 +52,41 @@ function setup_toshi_shipping_method()
                  */
                 function init_form_fields()
                 {
-                    $this->form_fields = array('api_key' => array(
-                        'title' => __('API Key', 'toshi'),
-                        'type' => 'text',
-                        'description' => __('Contact TOSHI to receive your key', 'toshi'),
-                        'default' => __('', 'toshi'),
-                    ),
+                    $this->form_fields = array(
+                        'api_key' => array(
+                            'title' => __('API Key', 'toshi'),
+                            'type' => 'text',
+                            'description' => __('Contact TOSHI to receive your key', 'toshi'),
+                            'default' => __('', 'toshi'),
+                        ),
 
-                    'api_url' => array(
-                        'title' => __('API URL', 'toshi'),
-                        'type' => 'text',
-                        'description' => __('API base URL', 'toshi'),
-                        'default' => __('', 'toshi'),
-                    ));
+                        'api_url' => array(
+                            'title' => __('API URL', 'toshi'),
+                            'type' => 'text',
+                            'description' => __('API base URL', 'toshi'),
+                            'default' => __('', 'toshi'),
+                        ),
+
+                        'sandbox' => array(
+                            'title' => __('Use sandbox', 'toshi'),
+                            'type' => 'checkbox',
+                            'description' => __('Test in TOSHI Staging', 'toshi'),
+                            'default' => false,
+                        )
+                    );
 
                     $this->instance_form_fields = array(
                         'enabled' => array(
                             'title' => __('Enable', 'toshi'),
                             'type' => 'checkbox',
-                            'description' => __('Enable this shipping.', 'toshi'),
+                            'description' => __('Is TOSHI enabled?', 'toshi'),
                             'default' => 'yes',
                         ),
 
                         'title' => array(
                             'title' => __('Title', 'toshi'),
                             'type' => 'text',
-                            'description' => __('Title to be display on site', 'toshi'),
+                            'description' => __('Title to be displayed on site', 'toshi'),
                             'default' => __('Toshi Concierge', 'toshi'),
                         ),
                     );
@@ -119,79 +123,15 @@ function setup_toshi_shipping_method()
     }
 
     add_filter('woocommerce_shipping_methods', 'add_toshi_shipping_method');
+
+    add_filter( 'woocommerce_cart_shipping_method_full_label', function ($label, $method) {
+        if ($method->method_id != 'toshi') {
+            return $label;
+        }
+
+        if ($method->cost <= 0) {
+            $label .= ': ' . wc_price(0);
+        }
+        return $label;
+    }, 10, 2 );
 }
-
-add_action('woocommerce_after_shipping_rate', function (WC_Shipping_Rate $shipping) {
-    if ($shipping->get_method_id() === 'toshi' && is_checkout()) {
-        ?>
-        <a href="/" id="js-toshi-select-delivery-button"
-           onclick="window.wp_toshi_plugin.showModal(event)">Select
-            Delivery</a>
-        <script type="text/javascript">
-            window.wp_toshi_plugin.configure({
-                apiKey: '<?php echo get_option('woocommerce_toshi_settings')['api_key']; ?>',
-                cart: <?php echo json_encode(toshi_get_checkout_data()); ?>
-            });
-        </script>
-        <style type="text/css">
-            .toshi__woo_modal_overlay, .toshi__woo_modal {
-                display: none;
-            }
-
-            .toshi__woo_modal {
-                background: white;
-                position: relative;         
-                width: 60%;
-                left: 20%;
-                top: calc(50% - 40vh);
-                z-index: 1000;
-            }
-
-            @media all and (max-width: 720px) {
-                .toshi__woo_modal {
-                    width: 90%;
-                    left: 5%;
-                }
-            }
-
-            .toshi__woo_modal .toshi__woo_modal__close {
-                background: url(<?php echo plugins_url('./images/close.png', __FILE__) ?>);
-                background-size: contain;
-                -moz-background-size: contain;
-                -o-background-size: contain;
-                -webkit-background-size: contain;
-                width: 40px;
-                height: 40px;
-                position: absolute;
-                top: -20px;
-                left: -20px;
-                z-index: 1100;
-            }
-
-            .toshi__woo_modal > div {
-                position: relative;
-            }
-
-            .toshi__woo_modal_overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                background: rgba(0, 0, 0, .8);
-                width: 100vw;
-                height: 100vh;
-                z-index: 999;
-                overflow-y: auto;
-                box-sizing: border-box;
-                padding-bottom: 60px;
-                padding-top: 60px;
-            }
-        </style>
-        <div id="js-toshi-modal-overlay" class="toshi__woo_modal_overlay">
-        <div id="js-toshi-modal-window" class="toshi__woo_modal">
-            <a href="#" id="js-toshi-close" class="toshi__woo_modal__close"></a>
-            <div id="js-toshi-app"></div>
-        </div>
-        </div>
-        <?php
-}
-});

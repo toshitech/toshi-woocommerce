@@ -1,0 +1,15 @@
+.toshi-tooltip {
+  position: relative;
+}
+
+.toshi-tooltip > .inner {
+  background: black;
+  color: white;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+}
+
+input#place_order {
+  
+}
