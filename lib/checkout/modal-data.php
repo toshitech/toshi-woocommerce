@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Creates the modal elements, configuring the cart with relevant cart data and styling.
+ */
 add_action('woocommerce_before_checkout_form', function () {
     ?>
     <style type="text/css">
