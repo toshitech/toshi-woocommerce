@@ -20,7 +20,9 @@ function toshi_get_cart_data()
         $orderItemObj->name = $cart_item['data']->get_title();
 
         // Get the item size
-        $orderItemObj->size = $cart_item['variation']['attribute_pa_size'];
+        if ($cart_item['variation']) {
+            $orderItemObj->size = $cart_item['variation']['attribute_pa_size'];
+        }
 
         // Get the item SKU
         $orderItemObj->sku = $cart_item['data']->get_sku();
