@@ -3,7 +3,7 @@
  * Plugin Name: TOSHI
  * Plugin URI: https://www.toshi.co
  * Description: Adds TOSHI shipping option to WooCommerce.
- * Version: 2.6.14
+ * Version: 3.1.2
  * Author: TOSHI
  * Author URI: https://www.toshi.co
  */
