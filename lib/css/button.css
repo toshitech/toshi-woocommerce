@@ -6,6 +6,7 @@
   display: block;
   border: 2px solid #8f002a;
   margin-top: 5px;
+  text-align: center;
 }
 
 .toshi__select-timeslot-button--huntsman:hover {
