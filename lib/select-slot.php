@@ -16,7 +16,7 @@ add_action('woocommerce_after_shipping_rate', function (WC_Shipping_Rate $shippi
     if ($shipping->id === 'toshi' && is_checkout() && toshi_shipping_option_selected()) {
         ?>
         <br />
-        <a href="/" id="js-toshi-select-delivery-button" class="<?= toshi_choose_slot_button_class() ?? 'toshi__select-timeslot-button' ?> button alt"
+        <a href="/" id="js-toshi-select-delivery-button" class="<?= toshi_choose_slot_button_class() ?? 'toshi__select-timeslot-button' ?>"
            onclick="window.wp_toshi_plugin.showModal(event); document.getElementById('shipping_method_0_toshi').checked = true;">Choose a time slot</a>
         <?php
     }
