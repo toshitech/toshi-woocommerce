@@ -1,0 +1,14 @@
+.toshi__select-timeslot-button--huntsman {
+  background: #8f002a;
+  color: white;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  display: block;
+  border: 2px solid #8f002a;
+  margin-top: 5px;
+}
+
+.toshi__select-timeslot-button--huntsman:hover {
+  background: black;
+  transition: all .4s ease;
+}
