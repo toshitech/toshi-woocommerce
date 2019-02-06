@@ -11,5 +11,16 @@
 
 .toshi__select-timeslot-button--huntsman:hover {
   background: black;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
+}
+
+.toshi__select-timeslot-button--skiim {
+  background: black;
+  color: white;
+  padding: 8px 18px;
+  display: block;
+  margin-top: 5px;
+  width: 156px;
+  float: right;
+  margin-right: 16px;
 }
