@@ -70,6 +70,13 @@ function setup_toshi_shipping_method()
                             'default' => __('', 'toshi'),
                         ),
 
+                        'choose_slot_button_class' => array(
+                            'title' => __('Choose Timeslot button class', 'toshi'),
+                            'type' => 'text',
+                            'description' => __('Override the class for the "Choose Timeslot" button', 'toshi'),
+                            'default' => __('', 'toshi'),
+                        ),
+
                         'sandbox' => array(
                             'title' => __('Use sandbox', 'toshi'),
                             'type' => 'checkbox',
@@ -113,7 +120,7 @@ function setup_toshi_shipping_method()
                 {
                     $rate = array(
                         'id' => $this->id,
-                        'label' => 'TOSHI',
+                        'label' => $this->get_instance_option('title') ?? 'TOSHI',
                         'cost' => '0.00',
                         'calc_tax' => 'per_item',
                     );
